@@ -69,7 +69,9 @@ public class APITesting {
 		Assert.assertEquals(userIdList.size(), 100);
 		
 	}
-	
+	/*
+	 * Test for POST Resource 
+	 */
 	@Test
 	@Parameters("propFName")
 	void postResource(String propFName) {
@@ -91,6 +93,7 @@ public class APITesting {
 		
 		System.out.println(response.getBody().asString());
 		
+		//verifying the post api response
 		int id = jPath.getInt("id");
 		Assert.assertEquals(response.getStatusCode(), 201);
 		Assert.assertEquals(response.header("Content-Type"),"application/json; charset=utf-8");
@@ -121,7 +124,7 @@ public class APITesting {
 		JsonPath jPath = response.jsonPath();
 		int id1 = jPath.getInt("id");
 		System.out.println(response.getBody().asString());
-		
+		//verifying the put api response
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.header("Content-Type"),"application/json; charset=utf-8");
 		
@@ -152,6 +155,7 @@ public class APITesting {
 	@Parameters("propFName")
 	void patchResource(String propFName) {
 		properties = new PropReader(propFName).getProperties();
+		//getting the sourceObj details
 		JSONObject sourceObj = this.getDetails(properties.getProperty("patchId"));
 		
 		JSONObject patchObj = new JSONObject();
@@ -166,7 +170,7 @@ public class APITesting {
 		JsonPath jPath = response.jsonPath();
 		int id1 = jPath.getInt("id");
 		System.out.println(response.getBody().asString());
-		
+		//verifying the patch api response
 		Assert.assertEquals(response.getStatusCode(), 200);
 		Assert.assertEquals(response.header("Content-Type"),"application/json; charset=utf-8");
 		
